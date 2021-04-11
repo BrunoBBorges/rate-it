@@ -1,21 +1,22 @@
 <div class="row">
   <div class="col s12 m8 offset-m2">
     <h2 class="header center">Rating Center</h2>
-    <div class="card horizontal background-styling">
-      <div class="card-stacked background-styling">
-        <div class="card-content background-styling">
-          <form>
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <form class="formInput">
             <div class="row">
               <div class="input-field col s12 m10 offset-m1">
-                <input id="userInput" type="text" class="validate">
+                <input id="userInput" name="userInput" type="text" class="validate">
                 <label class="active" for="userInput">Restaurant or Movie</label>
               </div>
               <div class="input-field col s12 m10 offset-m1">
-                <input id="userRating" type="number" class="validate" max="5">
-                <label class="active" for="userRating">Rating</label>
+                <input id="userRating" name="userRating" type="number" class="validate" max="5">
+                <label class="active" for="userRating">Enter Number Rating from 1 "The Worst" to 5 "Extremely
+                  Good"</label>
               </div>
               <div class="col s12 center">
-                <button type="submit" class="btn pull-s1">Submit</button>
+                <input type="submit" value="submit" class="btn pull-s1 teal darken-1" />
               </div>
             </div>
           </form>
@@ -32,7 +33,17 @@
       <div class="card-stacked">
         <div class="card-content">
           <ul class="collection" id="prevRatings">
-            {{!-- <li class="collection-item">Rating <span class="right">5</span></li> --}}
+            {{#each items}}
+            <li class="collection-item">
+              <span>{{dataValues.item}}</span>
+              {{#renderStars dataValues.rating}}
+              <p>{{this}}</p>
+              {{/renderStars}}
+              <span type="submit" class="badge btn teal darken-1"><i class="material-icons userDelete"
+                  style="color:white" id="{{dataValues.id}}">delete</i>
+              </span>
+            </li>
+            {{/each}}
           </ul>
         </div>
       </div>
